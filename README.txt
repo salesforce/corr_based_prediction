@@ -1,4 +1,4 @@
-ReadMe for Entropy Penalty paper: 
+ReadMe for the paper "Entropy Penalty: Towards Generalization Beyond the IID Assumption": 
 
 Version of softwares used:
 
@@ -45,5 +45,5 @@ python baseline.py --dataset fgbg_cmnist_cpr0.5-0.5 --seed 0 --root_dir cmnist -
 python baseline.py --dataset fgbg_cmnist_cpr0.5-0.5 --seed 0 --root_dir cmnist --lr 0.001 --save_dir inp_noise --inp_noise 0.2
 
 
-4. Evaluate a trained model on another dataset:
+4. Evaluate a trained model on another dataset (here [root_dir] and [save_dir] should be the directoris in which the model to be used is saved):
 python eval.py --root_dir cmnist --save_dir ep --dataset mnistm
