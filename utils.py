@@ -75,8 +75,8 @@ def entropy_reg(hid, targets, within_class=True, subtract_mean=True):
             norm = norm_fn(hid[idx], subtract_mean=subtract_mean)
             reg_ += (norm)**2
     else:
-        for i in range(len(hid)):
-            norm = norm_fn(hid, subtract_mean=subtract_mean)
+        norm = norm_fn(hid, subtract_mean=subtract_mean)
+        reg_ = (norm)**2
     return reg_
 
 
@@ -94,30 +94,6 @@ def idx2onehot(idx, n, h=1, w=1):
         onehot_tensor = torch.ones(idx.size(0), n, h, w).cuda()
         onehot = onehot_tensor* onehot
     return onehot
-
-
-
-def get_exchanged_idx(labels):
-    label_idx_dict = {}
-    for i in range(labels.shape[0]):
-        if labels[i] in label_idx_dict:
-            label_idx_dict[labels[i]].append(i)
-        else:
-            label_idx_dict.update({labels[i]: [i]})
-
-    target_idx = np.zeros((labels.shape[0],))
-    for i in range(labels.shape[0]):
-        cand = label_idx_dict[labels[i]]
-        if len(cand)==1:
-            target_idx[i] = i
-        else:
-            done = False
-            while not done:
-                idx = np.random.randint(len(cand))
-                if cand[idx]!=i:
-                    done = True
-                    target_idx[i] =cand[idx]
-    return target_idx
 
 
 def _split_train_val(trainset, val_fraction=0, nsamples=-1):
