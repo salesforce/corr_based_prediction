@@ -1,4 +1,4 @@
-ReadMe for Entropy Penalty paper:
+ReadMe for Entropy Penalty paper: 
 
 Version of softwares used:
 
