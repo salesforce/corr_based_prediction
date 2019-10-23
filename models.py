@@ -22,7 +22,7 @@ class MLPLayer(nn.Module):
     def forward(self, x):
         x=self.layer(x)
         if self.act:
-            x = ACT(self.layer(x))
+            x = ACT((x))
         return x
 
 class CNN(nn.Module):
