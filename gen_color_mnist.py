@@ -83,8 +83,9 @@ def gen_fgbgcolor_data(loader, img_size=(3,28,28), cpr=[0.5, 0.5], noise=10.):
 
 dir_name = data_path + 'cmnist/' + 'fgbg_cmnist_cpr' + '-'.join(str(p) for p in args.cpr) + '/'
 print(dir_name)
-if not os.path.exists(dir_name):
+if not os.path.exists(data_path + 'cmnist/'):
     os.mkdir(data_path + 'cmnist/')
+if not os.path.exists(dir_name):
     os.mkdir(dir_name)
 
 
