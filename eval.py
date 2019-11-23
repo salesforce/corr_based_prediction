@@ -11,7 +11,7 @@ from data import get_dataset
 
 
 
-parser = argparse.ArgumentParser(description='Entropy Penalty evaluation of trained models')
+parser = argparse.ArgumentParser(description='Predicting with high correlation features')
 
 # Directories
 parser.add_argument('--data', type=str, default='datasets/',

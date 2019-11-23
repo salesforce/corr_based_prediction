@@ -1,6 +1,6 @@
 
 '''
-Entropy Penalty
+Predicting with high correlation features
 
 '''
 
@@ -17,14 +17,14 @@ from torch import autograd
 import pickle as pkl
 from models import ResNet_model, CNN
 import torch.nn.functional as F
-from utils import entropy_reg
+from utils import correlation_reg
 import glob
 import tqdm
 import torch.utils.data as utils
 import json
 from data import get_dataset
 
-parser = argparse.ArgumentParser(description='Entropy Penalty using Information Bottleneck Principle')
+parser = argparse.ArgumentParser(description='Predicting with high correlation features')
 
 # Directories
 parser.add_argument('--data', type=str, default='datasets/',
@@ -38,9 +38,9 @@ parser.add_argument('--load_dir', type=str, default='',
                     help='dir path (inside root_dir) to load model from')
 
 
-# Entropy Penalty
+# Baseline (correlation based) method
 parser.add_argument('--beta', type=float, default=1,
-                    help='coefficient of Entropy Penalty')
+                    help='coefficient for correlation based penalty')
 
 # adaptive batch norm
 parser.add_argument('--bn_eval', action='store_true',
@@ -231,7 +231,7 @@ def train(epoch):
         loss = criterion(outputs, targets)
 
         regularization_loss = 0
-        regularization_loss = entropy_reg(hid_repr, targets.cpu().numpy())
+        regularization_loss = correlation_reg(hid_repr, targets.cpu().numpy())
         tot_regularization_loss = tot_regularization_loss + regularization_loss.data
 
         total_loss_ = loss + args.beta* regularization_loss

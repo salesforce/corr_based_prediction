@@ -1,6 +1,6 @@
 
 '''
-Baseline methods
+Existing regularization/robustness methods
 
 '''
 
@@ -24,7 +24,7 @@ import json
 from data import get_dataset
 from utils import AttackPGD, add_gaussian_noise, pairing_loss
 
-parser = argparse.ArgumentParser(description='Entropy Penalty using Information Bottleneck Principle')
+parser = argparse.ArgumentParser(description='Predicting with high correlation features')
 
 # Directories
 parser.add_argument('--data', type=str, default='datasets/',

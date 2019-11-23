@@ -64,7 +64,7 @@ def compute_l2_norm(h, subtract_mean=False):
     l2_norm = (h**2).sum()
     return torch.sqrt(l2_norm)
 
-def entropy_reg(hid, targets, within_class=True, subtract_mean=True):
+def correlation_reg(hid, targets, within_class=True, subtract_mean=True):
     norm_fn = compute_l2_norm
     if within_class:
         uniq = np.unique(targets)
